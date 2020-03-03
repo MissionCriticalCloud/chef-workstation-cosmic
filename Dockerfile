@@ -7,7 +7,11 @@ ARG VAGRANT_VERSION=2.2.7
 RUN /opt/chef-workstation/bin/chef -v
 
 RUN echo "Installing dependencies..." \
- && apt-get -qq update && apt-get -qq install --no-install-recommends -y build-essential && apt-get clean \
+ && apt-get -qq update \
+ && apt-get -qq install --no-install-recommends -y \
+        build-essential \
+        unzip \
+ && apt-get clean \
  && rm -rf /tmp/* /var/cache/debconf/*-old /var/lib/apt/lists/* \
         /var/lib/dpkg/*-old /var/log/*log /var/log/apt/* /var/tmp/*
 
