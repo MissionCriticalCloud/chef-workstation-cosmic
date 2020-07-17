@@ -1,4 +1,4 @@
-FROM chef/chefworkstation:0.16.31
+FROM chef/chefworkstation:20.7.91
 
 # Set any build variables here
 ARG VAGRANT_VERSION=2.2.7
