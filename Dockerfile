@@ -1,7 +1,7 @@
-FROM chef/chefworkstation:20.7.91
+FROM chef/chefworkstation:20.9.136
 
 # Set any build variables here
-ARG VAGRANT_VERSION=2.2.7
+ARG VAGRANT_VERSION=2.2.10
 
 # Print Chef-Workstation component versions
 RUN /opt/chef-workstation/bin/chef -v
