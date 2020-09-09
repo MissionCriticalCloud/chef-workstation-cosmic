@@ -31,7 +31,7 @@ RUN echo "Monkey patching Berkshelf (see https://github.com/berkshelf/berkshelf/
         /opt/chef-workstation/embedded/lib/ruby/gems/*/gems/berkshelf-*/lib/berkshelf/uploader.rb
 
 # Create directory and install knife-spork for cookbook deployment
-RUN mkdir -p /environments \
+RUN mkdir -p ~/environments \
  && chef gem install knife-spork
 
 # Setup entrypoint
