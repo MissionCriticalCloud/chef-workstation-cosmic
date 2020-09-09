@@ -1,7 +1,10 @@
-FROM chef/chefworkstation:20.7.91
+FROM chef/chefworkstation:20.9.136
+
+# Accept the license without prompting
+ARG CHEF_LICENSE=accept
 
 # Set any build variables here
-ARG VAGRANT_VERSION=2.2.7
+ARG VAGRANT_VERSION=2.2.10
 
 # Print Chef-Workstation component versions
 RUN /opt/chef-workstation/bin/chef -v
@@ -27,8 +30,9 @@ RUN echo "Monkey patching Berkshelf (see https://github.com/berkshelf/berkshelf/
  && sed -i -e 's/Berkshelf.formatter.skipping(cookbook, connection)/Berkshelf.formatter.skipping(cookbook, connection)\nrescue Net::HTTPClientException => e\nputs e.response.body/' \
         /opt/chef-workstation/embedded/lib/ruby/gems/*/gems/berkshelf-*/lib/berkshelf/uploader.rb
 
-# Create additional directories for Chef workflow
-RUN mkdir -p /environments
+# Create directory and install knife-spork for cookbook deployment
+RUN mkdir -p /environments \
+ && chef gem install knife-spork
 
 # Setup entrypoint
 COPY docker-entrypoint.sh /usr/bin
