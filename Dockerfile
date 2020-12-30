@@ -1,10 +1,10 @@
-FROM chef/chefworkstation:20.9.136
+FROM chef/chefworkstation:20.12.205
 
 # Accept the license without prompting
 ARG CHEF_LICENSE=accept
 
 # Set any build variables here
-ARG VAGRANT_VERSION=2.2.10
+ARG VAGRANT_VERSION=2.2.14
 
 # Print Chef-Workstation component versions
 RUN /opt/chef-workstation/bin/chef -v
