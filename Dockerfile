@@ -23,6 +23,7 @@ RUN echo "Installing vagrant ${VAGRANT_VERSION}..." \
  && curl -sLo /tmp/$VAGRANT_DEB https://releases.hashicorp.com/vagrant/$VAGRANT_VERSION/$VAGRANT_DEB \
  && dpkg -i /tmp/$VAGRANT_DEB && rm -rf /tmp/$VAGRANT_DEB \
  && vagrant plugin install vagrant-cosmic
+ && vagrant plugin install vagrant-vsphere
 
 # Monkey patch Berkshelf to print errors returned by Chef-Guard, this can be removed when
 # https://github.com/berkshelf/berkshelf/pull/1827 has been merged.
