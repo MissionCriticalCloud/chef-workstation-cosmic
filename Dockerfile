@@ -18,7 +18,7 @@ RUN echo "Installing dependencies..." \
  && rm -rf /tmp/* /var/cache/debconf/*-old /var/lib/apt/lists/* \
         /var/lib/dpkg/*-old /var/log/*log /var/log/apt/* /var/tmp/* \
  && sed -i -e '/DST_Root_CA_X3/d' /etc/ca-certificates.conf \
- && sed -i'' -e 's/ssl rehash/ssl certhash/' /usr/sbin/update-ca-certificates \
+ && sed -i'' -e 's/ssl rehash/ssl c_rehash/' /usr/sbin/update-ca-certificates \
  && update-ca-certificates -f
 
 RUN echo "Installing vagrant ${VAGRANT_VERSION}..." \
