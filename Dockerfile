@@ -1,10 +1,10 @@
-FROM chef/chefworkstation:21.7.524
+FROM chef/chefworkstation:21.9.630
 
 # Accept the license without prompting
 ARG CHEF_LICENSE=accept
 
 # Set any build variables here
-ARG VAGRANT_VERSION=2.2.17
+ARG VAGRANT_VERSION=2.2.18
 
 # Print Chef-Workstation component versions
 RUN /opt/chef-workstation/bin/chef -v
@@ -16,7 +16,9 @@ RUN echo "Installing dependencies..." \
         unzip \
  && apt-get clean \
  && rm -rf /tmp/* /var/cache/debconf/*-old /var/lib/apt/lists/* \
-        /var/lib/dpkg/*-old /var/log/*log /var/log/apt/* /var/tmp/*
+        /var/lib/dpkg/*-old /var/log/*log /var/log/apt/* /var/tmp/* \
+ && sed -i -e '/DST_Root_CA_X3/d' /etc/ca-certificates.conf \
+ && update-ca-certificates
 
 RUN echo "Installing vagrant ${VAGRANT_VERSION}..." \
  && VAGRANT_DEB="vagrant_${VAGRANT_VERSION}_x86_64.deb" \
