@@ -1,4 +1,4 @@
-FROM chef/chefworkstation:21.9.630
+FROM chef/chefworkstation:21.9.634
 
 # Accept the license without prompting
 ARG CHEF_LICENSE=accept
