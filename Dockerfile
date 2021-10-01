@@ -11,14 +11,13 @@ RUN /opt/chef-workstation/bin/chef -v
 
 RUN echo "Installing dependencies..." \
  && apt-get -qq update \
+ && apt-get -qq upgrade \
  && apt-get -qq install --no-install-recommends -y \
         build-essential \
         unzip \
  && apt-get clean \
  && rm -rf /tmp/* /var/cache/debconf/*-old /var/lib/apt/lists/* \
-        /var/lib/dpkg/*-old /var/log/*log /var/log/apt/* /var/tmp/* \
- && sed -i -e '/DST_Root_CA_X3/d' /etc/ca-certificates.conf \
- && update-ca-certificates -f
+        /var/lib/dpkg/*-old /var/log/*log /var/log/apt/* /var/tmp/*
 
 RUN echo "Installing vagrant ${VAGRANT_VERSION}..." \
  && VAGRANT_DEB="vagrant_${VAGRANT_VERSION}_x86_64.deb" \
