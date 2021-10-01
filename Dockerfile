@@ -17,7 +17,8 @@ RUN echo "Installing dependencies..." \
  && apt-get clean \
  && rm -rf /tmp/* /var/cache/debconf/*-old /var/lib/apt/lists/* \
         /var/lib/dpkg/*-old /var/log/*log /var/log/apt/* /var/tmp/* \
- && sed -i -e '/^DST Root CA X3/,/^$/d' /etc/ssl/certs/ca-certificates.crt
+ && sed -i -e '/DST_Root_CA_X3/d' /etc/ca-certificates.conf \
+ && update-ca-certificates
 
 RUN echo "Installing vagrant ${VAGRANT_VERSION}..." \
  && VAGRANT_DEB="vagrant_${VAGRANT_VERSION}_x86_64.deb" \
