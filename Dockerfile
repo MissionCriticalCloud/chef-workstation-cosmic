@@ -57,7 +57,7 @@ RUN /opt/vagrant/embedded/bin/gem install net-ssh -v 6.3.0.beta1 --pre --install
       patch -p1 -d ${CHEF_GEMDIR}/gems/net-ssh-6.3.0.beta1 && \
     curl https://github.com/net-ssh/net-ssh/commit/${NET_SSH_PATCH2}.diff | filterdiff -p1 -x 'test/*' -x '.rubocop_todo.yml' | \
       patch -p1 -d ${CHEF_GEMDIR}/gems/net-ssh-6.3.0.beta1 && \
-    rm -rf /root/.chef /root/.vagrant.d /root/.gem
+    rm -rf /root/.chef /root/.gem
 
 # Create directory and install knife-spork for cookbook deployment
 RUN mkdir -p ~/environments \
