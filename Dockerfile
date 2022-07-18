@@ -61,7 +61,8 @@ RUN /opt/vagrant/embedded/bin/gem install net-ssh -v 6.3.0.beta1 --pre --install
 
 # Create directory and install knife-spork for cookbook deployment
 RUN mkdir -p ~/environments \
- && chef gem install knife-spork
+ && chef gem install knife-spork \
+ && rm -rf /root/.chef /root/.local
 
 # Setup entrypoint
 COPY docker-entrypoint.sh /usr/bin
