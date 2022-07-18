@@ -10,7 +10,7 @@ ARG VAGRANT_GEMDIR=/opt/vagrant/embedded/gems/${VAGRANT_VERSION}/
 ARG CHEF_GEMDIR=/opt/chef-workstation/embedded/lib/ruby/gems/3.0.0/
 
 ARG NET_SSH_PATCH1=f79ed49dc068317fb280bd2fb554ecb0ce13a7e1 
-ARG NET_SSH_PATCH2=a45f54fe1de434605af0b7195dd9a91bccd2cec5"
+ARG NET_SSH_PATCH2=a45f54fe1de434605af0b7195dd9a91bccd2cec5
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
