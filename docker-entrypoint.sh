@@ -19,7 +19,7 @@ fi
 # Fetch chef config repository if one is provided
 if [ -n "${CHEF_REPO}" ] && [ -n "${GIT_PRIVATE_KEY}" ]; then
     echo "Fetching Chef config from ${CHEF_REPO}..."
-    git clone -q "${CHEF_REPO}" ~/.chef
+    rm -rf ~/.chef && git clone -q "${CHEF_REPO}" ~/.chef
     echo
 fi
 
