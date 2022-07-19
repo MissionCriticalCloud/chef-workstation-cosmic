@@ -6,7 +6,6 @@ ARG CHEF_LICENSE=accept
 # Set any build variables here
 ARG VAGRANT_VERSION=2.2.19
 
-ARG VAGRANT_GEMDIR=/opt/vagrant/embedded/gems/${VAGRANT_VERSION}/
 ARG CHEF_GEMDIR=/opt/chef-workstation/embedded/lib/ruby/gems/3.0.0/
 
 ARG NET_SSH_PATCH1=f79ed49dc068317fb280bd2fb554ecb0ce13a7e1 
@@ -45,14 +44,9 @@ RUN echo "Monkey patching Berkshelf (see https://github.com/berkshelf/berkshelf/
 # For more details see https://www.openssh.com/txt/release-8.7
 #
 # The ruby gem net-ssh needs to be updated to 6.3.0.beta1 + patch to handle this.
-# Future releases of test-kitchen and vagrant will probably handle this better.
-RUN /opt/vagrant/embedded/bin/gem install net-ssh -v 6.3.0.beta1 --pre --install-dir ${VAGRANT_GEMDIR} && \
-    /opt/chef-workstation/embedded/bin/gem install net-ssh -v 6.3.0.beta1 --pre --no-user-install  --install-dir ${CHEF_GEMDIR} && \
+# Future releases of test-kitchen will probably handle this better.
+RUN /opt/chef-workstation/embedded/bin/gem install net-ssh -v 6.3.0.beta1 --pre --no-user-install  --install-dir ${CHEF_GEMDIR} && \
     sed -i 's/gem "net-ssh", "= 6.1.0"/gem "net-ssh", "= 6.3.0.beta1"/' /opt/chef-workstation/bin/kitchen && \
-    curl https://github.com/net-ssh/net-ssh/commit/${NET_SSH_PATCH1}.diff | filterdiff -p1 -x 'test/*' -x '.rubocop_todo.yml' | \
-      patch -p1 -d ${VAGRANT_GEMDIR}/gems/net-ssh-6.3.0.beta1 && \
-    curl https://github.com/net-ssh/net-ssh/commit/${NET_SSH_PATCH2}.diff | filterdiff -p1 -x 'test/*' -x '.rubocop_todo.yml' | \
-      patch -p1 -d ${VAGRANT_GEMDIR}/gems/net-ssh-6.3.0.beta1 && \
     curl https://github.com/net-ssh/net-ssh/commit/${NET_SSH_PATCH1}.diff | filterdiff -p1 -x 'test/*' -x '.rubocop_todo.yml' | \
       patch -p1 -d ${CHEF_GEMDIR}/gems/net-ssh-6.3.0.beta1 && \
     curl https://github.com/net-ssh/net-ssh/commit/${NET_SSH_PATCH2}.diff | filterdiff -p1 -x 'test/*' -x '.rubocop_todo.yml' | \
