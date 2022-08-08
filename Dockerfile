@@ -55,7 +55,7 @@ RUN /opt/chef-workstation/embedded/bin/gem install net-ssh -v 6.3.0.beta1 --pre 
 
 # Create directory and install knife-spork for cookbook deployment
 RUN mkdir -p ~/environments \
- && chef gem install knife-spork \
+ && chef gem install knife-spork --no-user-install --conservative \
  && rm -rf /root/.chef /root/.local
 
 # Setup entrypoint
