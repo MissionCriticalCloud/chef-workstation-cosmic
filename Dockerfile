@@ -4,7 +4,7 @@ FROM chef/chefworkstation:22.7.1007
 ARG CHEF_LICENSE=accept
 
 # Set any build variables here
-ARG VAGRANT_VERSION=2.2.19
+ARG VAGRANT_VERSION=2.4.1
 
 ARG CHEF_GEMDIR=/opt/chef-workstation/embedded/lib/ruby/gems/3.0.0/
 
